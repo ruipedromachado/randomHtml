@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    var utag_data = {
+        "customer_mail": "rui.machado@tealium.com",
+        "funnel_step": 1,
+        "step": "tipo de vehiculo",
+        "booking_location": "barcelona",
+    };
+
+    (function() {
+        var a = '//tags.tiqcdn.com/utag/belron-sandbox/user7/prod/utag.js';
+        var b = document;
+        var c = 'script';
+        var d = b.createElement(c);
+        d.src = a;
+        d.type = 'text/java' + c;
+        d.async = true;
+        a = b.getElementsByTagName(c)[0];
+        a.parentNode.insertBefore(d, a)
+    })();
+
+
+
+    function gettingJSON() {
+        var apiKey = "hoArfRosT1215";
+        var adrs = "http://apidev.accuweather.com/locations/v1/cities/search.json?q=" + utag_data.booking_location + "&apikey=" + apiKey + "&language=en-us";
+        var currentCondition = "rain";
+        $.ajax({
+            type: "GET",
+            url: adrs,
+            cache: false,
+            async: false,
+            success: function(a, b, c, d) {
+                var spainObj;
+                for (i = 0; i < a.length; i++) {
+                    if (a[i].Country.ID == "ES") {
+                        spainObj = a[i];
+                        exit;
+                    };
+                }
+                var cityKey = spainObj.Key;
+                var apiKey = "hoArfRosT1215";
+                var adrs = "http://apidev.accuweather.com/currentconditions/v1/" + cityKey + ".json?language=en&apikey=" + apiKey;
+                $.ajax({
+                    type: "GET",
+                    url: adrs,
+                    cache: false,
+                    async: false,
+                    success: function(x, y, z) {
+                        for (j = 0; j < x.length; j++) {
+                            if (x[j].WeatherText) {
+                                currentCondition = x[j].WeatherText;
+                                exit;
+                            };
+                        }
+                    }
+                });
+            }
+        });
+        utag_data.booking_location = utag_data.booking_location;
+        utag_data.weather_condition = currentCondition;
+    }
+    </script>
+</head>
+
+<body>
+    carglass1
+    <button onclick="gettingJSON();">get weather</button>
+    <div id="test"></div>
+</body>
+
+</html>
