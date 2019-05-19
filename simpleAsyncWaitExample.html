@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script>
+
+
+            (function (w) {
+
+                var delayer = function (seconds) {
+                    w.setTimeout(function () {
+                        w.console.log("delayed for " + seconds);
+                    }, seconds);
+                };
+
+                var callEndPoint = function (isThrow) {
+                    return new Promise(function (resolve, reject) {
+
+                        if (isThrow === true) {
+                            delayer(2000);
+                            reject({data: "failed to contact endpoint!"});
+                        } else {
+                            delayer(3000);
+                            resolve({data: "failed to contact endpoint!"});
+                        }
+                        ;
+
+                    });
+
+                };
+
+                async function process() {
+                    return await callEndPoint();
+                }
+                ;
+
+                var init = function () {
+                    w.console.log("script start!");
+                    var data = process();
+                    w.console.log("data return by service: " + data);
+                    w.console.log("script end!");
+                };
+
+                init();
+
+            })(window);
+
+        </script>
+
+
+
+    </head>
+    <body>
+        <div>TODO write content</div>
+    </body>
+</html>
