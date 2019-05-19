@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="html5videoTracking.js" type="text/javascript"></script>
+        <style>
+
+            header {
+                font-size: 20px;
+                font-style: italic;
+                font-weight: bold;
+                color: red;
+                margin: 5px 5px 5px 0;
+            }
+
+            section {
+                padding: 20px
+            }
+
+        </style>
+
+    </head>
+    <body>
+        <section>
+
+            <header>Media Type <mark>mp4</mark></header>
+            <video id="videomp4" controls="" preload="none" poster="https://media.w3.org/2010/05/sintel/poster.png">
+
+                <source id="mp4" src="https://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">
+
+                <p>Your user agent does not support the HTML5 Video element.</p>
+            </video>
+
+
+        </section>
+        <section>
+
+            <header>Media Type <mark>webm</mark></header>
+            <video id="videowebm" controls="" preload="none" poster="https://media.w3.org/2010/05/sintel/poster.png">
+
+                <source id="webm" src="https://media.w3.org/2010/05/sintel/trailer.webm" type="video/webm">
+
+                <p>Your user agent does not support the HTML5 Video element.</p>
+            </video>
+
+
+        </section>
+        <section>
+
+            <header>Media Type <mark>ogv</mark></header>
+            <video id="videoogv" controls="" preload="none" poster="https://media.w3.org/2010/05/sintel/poster.png">
+
+                <source id="ogv" src="https://media.w3.org/2010/05/sintel/trailer.ogv" type="video/ogg">
+
+                <p>Your user agent does not support the HTML5 Video element.</p>
+            </video>
+
+
+        </section>
+    </body>
+</html>
