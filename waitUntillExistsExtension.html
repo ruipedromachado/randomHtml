@@ -10,13 +10,13 @@
         
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
         
-        -->
-    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="waitUntilDomElementExists.js"></script>
-
+    -->
+    <script src="../extensions/waitUntilDomElementExists.js"></script>
     <script type="text/javascript">
-        
+    setTimeout(function() {
+
         function addElement(id) {
 
             $("#container" + id).append("<div class='element' id='element" + id + "'>this is element" + id + "<div>");
@@ -35,8 +35,8 @@
             console.log("element3 found");
         });
 
+    }, 2000);
     </script>
-
     <style>
     .container {
         border: red solid 1px;
@@ -47,7 +47,6 @@
         margin: 10px;
     }
     </style>
-
 </head>
 
 <body>
