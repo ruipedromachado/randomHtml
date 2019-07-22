@@ -5,7 +5,6 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="../extensions/findClosest.js" type="text/javascript"></script>
         <style>
 
         </style>
@@ -14,27 +13,29 @@
     <body class="parent">
         
         <section class="section ">
+            <a class="anchor"></a>
             <section class="section closest">
-
+                <a class="anchor closest"></a>
                 <div class="parent closest">
-                    <div><div>
-                    <div class="parent"></div>
-                        <div class="another closest"></div>
+                    <div class="another closest"></div>
+                    <div class="parent">
+                        <div class="another"></div>
                     </div>
-                    <div class="one"><div>
+                    <div class="one">
                         <div></div>
-                        <div class="two"><div>
+                        <div class="two">
                             <div></div>
-                            <div class="three"><div>
+                            <div class="three">
                                 <div></div>
                                 <div class="another"></div>
-                            </div></div>
-                        </div></div>
-                    </div></div>
-                    </div></div>
-                    <div>
+                            </div>
+                        </div>
+                    </div>
                     <div></div>
-                    <div class="test1"></div>
+                    <div data-get-closest="test" class="hasDataSetValue closest" id="hasDataSetValue"></div>
+                    <div>
+                        <div></div>
+                        <div id="test1"></div>
                     </div>
                 </div>
                 
@@ -57,4 +58,5 @@
         </section>
         
     </body>
+    <script src="findClosest.js" type="text/javascript"></script>
 </html>
