@@ -1,0 +1,19 @@
+{
+  "name": "randomhtml",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruipedromachado/randomHtml.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ruipedromachado/randomHtml/issues"
+  },
+  "homepage": "https://github.com/ruipedromachado/randomHtml#readme"
+}
