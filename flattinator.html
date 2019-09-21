@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+	<style>
+		.ce {
+			border: 1px solid dimgray;
+		}
+		p {
+			margin: 50px;
+		}
+	</style>
+</head>
+<body>
+	<p class="ce">
+		<textarea id="myTextarea1">
+
+		</textarea>			
+	</p>
+	<p>
+		Complex object with circular references, window object, dom elements and other primitive types. Everything will be flatten.
+		<br><br>
+		(This object is also available on the console, for real time testing. Use the command 
+		<i>console.log(utag_data.utilities.the_flattinator(complex_data_layer_object));</i> 
+		to see the result in the console.)
+		<br><br><br>
+		<button onclick="process();" >Lets see the result</button>
+	</p>
+	<p class="ce">
+		<textarea id="myTextarea2">
+	
+		</textarea>
+	</p>	
+	<button style="visibility:hidden">aaaa</button>
+</body>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/addon/fold/foldgutter.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/addon/fold/foldcode.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/addon/fold/foldgutter.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/addon/fold/brace-fold.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/addon/fold/xml-fold.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/addon/fold/indent-fold.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/addon/fold/markdown-fold.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/addon/fold/comment-fold.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/mode/javascript/javascript.js"></script>
+<script src="flatten.js" type="text/javascript"></script>
+<script>
+	var complex_data_layer_object = {
+		a1 : complex_data_layer_object,
+		a2 : window,
+		a3 : document,
+		a4 : this,
+		a5 : document.querySelector("button"),
+		a6 : null,
+		a7 : undefined,
+		a8 : [
+			complex_data_layer_object,
+			window,
+			document,
+			this,
+			document.querySelector("button"),
+			null,
+			undefined
+		],
+		"string": "name",
+		"number": 1,
+		"date": new Date(),
+		"n1": 1.1,
+		"array": ["1", "2", "3"],
+		"complex_array": [{
+			"string": "name2",
+			"number": 2,
+		}, {
+			"string": "name1",
+			"number": 1,
+		}, {
+			"string": "name3",
+			"number": 3,
+		}],
+		funct : function () {
+			console.log("123");
+		},
+		t : {
+			b : function() {
+				console.log("222");
+			},
+			"array": ["1", "2", "3"],
+			"complex_array": [{
+				"string": "name2",
+				"number": 2,
+			}, {
+				"string": "name1",
+				"number": 1,
+			}, {
+				"string": "name3",
+				"number": 3,
+			}]
+		},
+		cplx: {
+			"string": "name",
+			"number": 1,
+			"date": new Date(),
+			"n2": 1.1,
+			"array": [
+				"1", 
+				"2", 
+				"3", 
+				new Date(), { 
+					data : "123",
+					arr : ["a", "b"],
+					complex: {
+						d : 1,
+						s : 2,
+						"n3" : 1.1
+					}
+				}
+			],
+			"complex_array": [{
+				"string": "name2",
+				"number": 2,
+			}, {
+				"string": "name1",
+				"number": 1,
+			}, {
+				"string": "name3",
+				"number": 3,
+			}]
+		},
+	};
+	console.log(utag_data.utilities.the_flattinator(complex_data_layer_object));
+	var sample = 'var complex_data_layer_object = {\n' +
+				'    a1 : complex_data_layer_object,\n' +
+				'    a2 : window,\n' +
+				'    a3 : document,\n' +
+				'    a4 : this,\n' +
+				'    a5 : document.querySelector("button"),\n' +
+				'    a6 : null,\n' +
+				'    a7 : undefined,\n' +
+				'    a8 : [\n' +
+				'        complex_data_layer_object,\n' +
+				'        window,\n' +
+				'        document,\n' +
+				'        this,\n' +
+				'        document.querySelector("button"),\n' +
+				'        null,\n' +
+				'        undefined\n' +
+				'    ],\n' +
+				'    "string": "name",\n' +
+				'    "number": 1,\n' +
+				'    "date": new Date(),\n' +
+				'    "n1": 1.1,\n' +
+				'    "array": ["1", "2", "3"],\n' +
+				'    "complex_array": [{\n' +
+				'        "string": "name2",\n' +
+				'        "number": 2,\n' +
+				'    }, {\n' +
+				'        "string": "name1",\n' +
+				'        "number": 1,\n' +
+				'    }, {\n' +
+				'        "string": "name3",\n' +
+				'        "number": 3,\n' +
+				'    }],\n' +
+				'    funct : function () {\n' +
+				'        console.log("123");\n' +
+				'    },\n' +
+				'    t : {\n' +
+				'        b : function() {\n' +
+				'            console.log("222");\n' +
+				'        },\n' +
+				'        "array": ["1", "2", "3"],\n' +
+				'        "complex_array": [{\n' +
+				'            "string": "name2",\n' +
+				'            "number": 2,\n' +
+				'        }, {\n' +
+				'            "string": "name1",\n' +
+				'            "number": 1,\n' +
+				'        }, {\n' +
+				'            "string": "name3",\n' +
+				'            "number": 3,\n' +
+				'        }]\n' +
+				'    },\n' +
+				'    cplx: {\n' +
+				'        "string": "name",\n' +
+				'        "number": 1,\n' +
+				'        "date": new Date(),\n' +
+				'        "n2": 1.1,\n' +
+				'        "array": [\n' +
+				'            "1", \n' +
+				'            "2", \n' +
+				'            "3", \n' +
+				'            new Date(), { \n' +
+				'                data : "123",\n' +
+				'                arr : ["a", "b"],\n' +
+				'                complex: {\n' +
+				'                    d : 1,\n' +
+				'                    s : 2,\n' +
+				'                    "n3" : 1.1\n' +
+				'                }\n' +
+				'            }\n' +
+				'        ],\n' +
+				'        "complex_array": [{\n' +
+				'            "string": "name2",\n' +
+				'            "number": 2,\n' +
+				'        }, {\n' +
+				'            "string": "name1",\n' +
+				'            "number": 1,\n' +
+				'        }, {\n' +
+				'            "string": "name3",\n' +
+				'            "number": 3,\n' +
+				'        }]\n' +
+				'    },\n' +
+				'};\n';
+	var editor1 = CodeMirror.fromTextArea(document.getElementById("myTextarea1"), {
+		lineNumbers: true
+	});
+	var doc = editor1.getDoc();
+    var cursor = doc.getCursor();
+    doc.replaceRange(sample, cursor);
+	var editor2 = CodeMirror.fromTextArea(document.getElementById("myTextarea2"), {
+		lineNumbers: true
+	});
+
+	function process() {
+		var doc = editor2.getDoc();
+		var cursor = doc.getCursor();
+		var t = utag_data.utilities.the_flattinator(complex_data_layer_object)
+		var result = "var flattened_data_layer_object = {\n";
+		for (var key in t) {
+			if (t.hasOwnProperty(key)) {
+				var element = t[key];
+				result += "	" + key + " : \"" + element + "\"\n"
+			}
+		}
+		result += "};";
+		doc.replaceRange(result, cursor);
+	}
+</script>
+</html>

@@ -1,2 +1,7 @@
-
+node_modules
+marksandspencer/.DS_Store
+*.sublime-workspace
+*.sublime-workspace
+onetrust/.DS_Store
+.DS_Store
 .DS_Store
