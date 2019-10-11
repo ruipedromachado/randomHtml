@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script>
+            function allowDrop(ev) {
+                ev.preventDefault();
+                console.log("original allowdrop");
+            }
+            
+            function drag(ev) {
+                ev.dataTransfer.setData("text", ev.target.id);
+                console.log("original drag");
+            }
+            
+            function drop(ev) {
+                ev.preventDefault();
+                var data = ev.dataTransfer.getData("text");
+                ev.target.innerHTML = "";
+                ev.target.appendChild(document.getElementById(data));
+                console.log("original drop");
+            }
+        </script>
+
+
+
+
+        <!--
+            tealium block
+        /-->
+
+        <script type="text/javascript">
+
+            var utag_data = {};
+
+            document.addEventListener("DOMContentLoaded", function(){
+                document.getElementById("div1").addEventListener("drop", function() {
+                    console.log("second bind event to track with tealium");
+                    utag.link({
+                        event_name : "icon_drag_and_drop"
+                    }, function() { console.log("call was done to tealium and this is the callback!")}, null);
+                }, false);
+            });
+
+        </script>
+
+        <script src="//tags.tiqcdn.com/utag/services-ruipedrodacruzmachado/as/dev/utag.sync.js"></script>
+        <script src="//tags.tiqcdn.com/utag/services-ruipedrodacruzmachado/as/dev/utag.js" async></script>
+
+
+        <!--
+            end of tealium block
+        /-->
+
+
+        <style>
+                #div1 {
+                  width: 350px;
+                  height: 70px;
+                  padding: 10px;
+                  border: 1px solid #aaaaaa;
+                }
+                </style>
+        </head>
+    <body style="background-color: aqua">
+        <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">drag the jquery logo in here and see the tracking in the console</div>
+        <img id="drag1" src="https://jquery.com/jquery-wp-content/themes/jquery/images/logo-jquery.png" draggable="true" ondragstart="drag(event)" width="336" height="69">
+    </body>
+</html>
