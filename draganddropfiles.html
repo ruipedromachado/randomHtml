@@ -1,0 +1,82 @@
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        function dropHandler(ev) {
+            console.log('File(s) dropped');
+
+            // Prevent default behavior (Prevent file from being opened)
+            ev.preventDefault();
+
+            if (ev.dataTransfer.items) {
+                // Use DataTransferItemList interface to access the file(s)
+                for (var i = 0; i < ev.dataTransfer.items.length; i++) {
+                    // If dropped items aren't files, reject them
+                    if (ev.dataTransfer.items[i].kind === 'file') {
+                        var file = ev.dataTransfer.items[i].getAsFile();
+                        console.log('... file[' + i + '].name = ' + file.name);
+                    }
+                }
+            } else {
+                // Use DataTransfer interface to access the file(s)
+                for (var i = 0; i < ev.dataTransfer.files.length; i++) {
+                    console.log('... file[' + i + '].name = ' + ev.dataTransfer.files[i].name);
+                }
+            }
+        }
+        function dragOverHandler(ev) {
+            console.log('File(s) in drop zone');
+
+            // Prevent default behavior (Prevent file from being opened)
+            ev.preventDefault();
+        }
+    </script>
+
+
+
+
+    <!--
+        tealium block
+    /-->
+
+    <script type="text/javascript">
+
+        var utag_data = {};
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("drop_zone").addEventListener("drop", function () {
+                console.log("second bind event to track with tealium");
+                utag.link({
+                    event_name: "file_drag_and_drop"
+                }, function () { console.log("call was done to tealium and this is the callback!") }, null);
+            }, false);
+        });
+
+    </script>
+
+    <script src="//tags.tiqcdn.com/utag/services-ruipedrodacruzmachado/as/dev/utag.sync.js"></script>
+    <script src="//tags.tiqcdn.com/utag/services-ruipedrodacruzmachado/as/dev/utag.js" async></script>
+
+
+    <!--
+        end of tealium block
+    /-->
+
+
+    <style>
+        #drop_zone {
+            border: 5px solid blue;
+            width: 200px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body style="background-color: aqua">
+    <div id="drop_zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+        <p>Drag one or more files to this Drop Zone ...</p>
+    </div>
+</body>
+
+</html>
